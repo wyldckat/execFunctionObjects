@@ -37,14 +37,16 @@ Description
     Anything needed should be provided by the function objects and the libs
     entry in controlDict.
 
-    Therefore, either function objects for the features needed or rely on 
-    Third-Party function objects, such as the ones provided by swak4Foam:
+    Therefore, either specifically create the function objects for the
+    features needed or rely on Third-Party function objects, such as the ones
+    provided by swak4Foam:
         http://openfoamwiki.net/index.php/Contrib/swak4Foam
 
 \*---------------------------------------------------------------------------*/
 
 #include "argList.H"
 #include "timeSelector.H"
+#include "volFields.H"
 
 using namespace Foam;
 

@@ -1,0 +1,74 @@
+/*--------------------------------*- C++ -*----------------------------------*\
+| =========                 |                                                 |
+| \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox           |
+|  \\    /   O peration     | Version:  2.2.1                                 |
+|   \\  /    A nd           | Web:      www.OpenFOAM.org                      |
+|    \\/     M anipulation  |                                                 |
+\*---------------------------------------------------------------------------*/
+FoamFile
+{
+    version     2.0;
+    format      ascii;
+    class       dictionary;
+    location    "system";
+    object      controlDict.functions;
+}
+// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
+
+functions
+{
+    readFields
+    {
+        functionObjectLibs ( "libfieldFunctionObjects.so" );
+        type            readFields;
+        fields          (p U);
+    }
+    
+  
+    fieldAverage1
+    {
+        type            fieldAverage;
+        functionObjectLibs ( "libfieldFunctionObjects.so" );
+        outputControl   outputTime;
+        fields
+        (
+            U
+            {
+                 mean        on;
+                 prime2Mean  off;
+                 base        time;
+            }
+
+            p
+            {
+                 mean        on;
+                 prime2Mean  off;
+                 base        time;
+            }
+        );
+    }
+
+    cuttingPlane
+    {
+        type            surfaces;
+        functionObjectLibs ( "libsampling.so" );
+        outputControl   outputTime;
+        surfaceFormat   vtk;
+        fields          ( p U );
+        interpolationScheme cellPoint;
+        surfaces
+        (
+            yNormal
+            {
+                type cuttingPlane;
+                planeType pointAndNormal;
+                pointAndNormalDict
+                {
+                    basePoint (0.055 0 0);
+                    normalVector (0 1 0);
+                }
+                interpolate true;
+            }
+        );
+    }
+}
