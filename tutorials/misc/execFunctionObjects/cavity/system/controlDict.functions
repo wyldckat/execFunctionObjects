@@ -64,11 +64,33 @@ functions
                 planeType pointAndNormal;
                 pointAndNormalDict
                 {
-                    basePoint (0.055 0 0);
-                    normalVector (0 1 0);
+                    basePoint (0.05 0.05 0.005);
+                    normalVector (0 0 1);
                 }
                 interpolate true;
             }
         );
     }
+    
+    Average_MovingWall
+    {
+        type           faceSource;
+        functionObjectLibs ("libfieldFunctionObjects.so");
+        enabled on;
+        log             no;
+        valueOutput     true;
+        surfaceFormat   vtk;
+        source          patch;
+        sourceName      movingWall;
+        operation       areaAverage;
+        fields
+        (
+            p
+            //phi // surface fields not supported for sampledSurface
+            U
+        );
+        outputControl outputTime;
+        outputInterval 1;
+      }
+    
 }
