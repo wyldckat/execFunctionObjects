@@ -53,6 +53,7 @@ wmake all applications
 For getting and building from zip:
 ```
 wget "https://github.com/wyldckat/execFunctionObjects/archive/master.zip" -O execFunctionObjects.zip
+unzip execFunctionObjects.zip
 cd execFunctionObjects-master
 wmake all applications
 ```
