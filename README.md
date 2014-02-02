@@ -12,7 +12,10 @@ As for OpenFOAM's own `execFlowFunctionObjects` utility, it it able to either ru
 
 If you have any questions about this `execFunctionObjects`, please use the following forum thread: http://www.cfd-online.com/Forums/openfoam-post-processing/122945-execfunctionobjects-minimalistic-variant-execflowfunctionobjects-utility.html
 
-*NOTE:* You must use the latest OpenFOAM 2.2.x or this function object will not work as intended!!
+*NOTE:* You must use the latest OpenFOAM 2.2.x or this function object will not work as intended!! If you are using an older version of OpenFOAM, then try running:
+```
+execFlowFunctionObjects -noFlow
+```
 
 
 Disclaimer and License
